@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Patient Search</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <h1 class="dashboard-title">
+            Patient Search
+        </h1>
+
+        <!-- SINGLE CLEAN SEARCH FORM -->
+        <form method="POST">
+
+            <input type="text"
+                   name="keyword"
+                   placeholder="Enter patient name..."
+                   style="padding:12px; width:60%; border-radius:10px; border:none;">
+
+            <button type="submit" class="add-btn">
+                Search
+            </button>
+
+        </form>
+
+        <br>
+
+        {% if results %}
+
+        <table class="appointment-table">
+
+            <tr>
+                <th>Patient Name</th>
+                <th>Action</th>
+            </tr>
+
+            {% for r in results %}
+
+            <tr>
+
+                <td>{{ r.patient_name }}</td>
+
+                <td>
+
+                    <a href="/patient_history/{{ r.patient_name }}"
+                       class="add-btn">
+                        View History
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/dashboard" class="logout-btn">
+            Back
+        </a>
+
+    </div>
+
+</body>
+
+</html>

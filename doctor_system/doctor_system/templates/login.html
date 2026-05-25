@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+```
+<title>Secure Smart Clinic System</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+    body{
+        margin:0;
+        padding:0;
+        min-height:100vh;
+
+        /* PROFESSIONAL MEDICAL BACKGROUND */
+        background:
+        linear-gradient(rgba(9,18,44,0.82), rgba(15,23,42,0.9)),
+        url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1974&auto=format&fit=crop');
+
+        background-size:cover;
+        background-position:center;
+        background-attachment:fixed;
+
+        font-family:'Segoe UI', sans-serif;
+    }
+
+    /* WEBSITE HEADER */
+
+    .website-header{
+        text-align:center;
+        padding-top:50px;
+        margin-bottom:20px;
+    }
+
+    .website-title{
+        font-size:52px;
+        font-weight:800;
+        color:white;
+        margin-bottom:10px;
+        letter-spacing:1px;
+        text-shadow:0 5px 20px rgba(0,0,0,0.35);
+    }
+
+    .website-subtitle{
+        font-size:18px;
+        color:rgba(255,255,255,0.88);
+        letter-spacing:1px;
+    }
+
+    /* LOGIN CONTAINER */
+
+    .login-container {
+        width:400px;
+        margin:40px auto;
+        padding:35px;
+        /* GREEN GLASS UI */
+        background:
+            linear-gradient(
+                135deg,
+                rgba(16, 185, 129, 0.781),
+                rgba(130, 255, 215, 0.623)
+            );
+        backdrop-filter:blur(18px);
+        border-radius:20px;
+        border:1px solid rgba(34,197,94,0.25);
+        box-shadow:
+            0 8px 32px rgba(0,0,0,0.30),
+            0 0 25px rgba(34,197,94,0.12);
+        color:white;
+    }
+
+    .login-container h2{
+        text-align:center;
+        margin-bottom:25px;
+        font-size:28px;
+    }
+
+    input {
+
+        width:100%;
+
+        padding:14px;
+
+        margin:12px 0;
+
+        border-radius:12px;
+
+        border:1px solid rgba(255,255,255,0.12);
+
+        background:rgba(255,255,255,0.12);
+
+        color:white;
+
+        font-size:15px;
+
+        box-sizing:border-box;
+    }
+
+    input::placeholder{
+        color:rgba(255,255,255,0.7);
+    }
+
+    input:focus{
+
+        outline:none;
+
+        border:1px solid #22c55e;
+
+        box-shadow:
+        0 0 12px rgba(34,197,94,0.45);
+    }
+
+    button {
+
+        width:100%;
+
+        padding:14px;
+
+        border-radius:12px;
+
+        border:none;
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+        color:white;
+
+        font-size:16px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+        transition:0.3s;
+    }
+
+    button:hover{
+
+        transform:translateY(-2px);
+
+        box-shadow:
+        0 8px 20px rgba(34,197,94,0.35);
+    }
+
+    .flash-message {
+
+        margin-bottom:15px;
+
+        padding:12px;
+
+        background:rgba(255, 0, 0, 0.705);
+
+        border:1px solid rgba(255, 0, 0, 0.685);
+
+        border-radius:12px;
+
+        color:#ffa1a1;
+
+        text-align:center;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- WEBSITE HEADER -->
+
+<div class="website-header">
+
+    <h1 class="website-title">
+        Secure Smart Clinic System
+    </h1>
+
+    <p class="website-subtitle">
+        Secure Healthcare Management Platform
+    </p>
+
+</div>
+
+<!-- LOGIN CONTAINER -->
+
+<div class="login-container">
+
+    <h2>
+        Doctor Login
+    </h2>
+
+    <!-- FLASH MESSAGE -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="flash-message">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    <!-- LOGIN FORM -->
+
+    <form method="POST">
+
+        <input type="email"
+               name="email"
+               placeholder="Email"
+               required>
+
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               required>
+
+        <button type="submit">
+
+            Login
+
+        </button>
+
+    </form>
+
+</div>
+```
+
+</body>
+
+</html>
