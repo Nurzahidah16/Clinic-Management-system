@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Patient History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <h1 class="dashboard-title">
+            History: {{ patient_name }}
+        </h1>
+
+        {% if history %}
+
+        <table class="appointment-table">
+
+            <tr>
+                <th>ID</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+                <th>Notes</th>
+                <th>Date</th>
+            </tr>
+
+            {% for h in history %}
+
+            <tr>
+
+                <td>{{ h.record_id }}</td>
+                <td>{{ h.diagnosis }}</td>
+                <td>{{ h.prescription }}</td>
+                <td>{{ h.notes }}</td>
+                <td>{{ h.updated_at }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% else %}
+
+        <p>No history found.</p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/medical_records" class="logout-btn">
+            Back
+        </a>
+
+    </div>
+
+</body>
+
+</html>
