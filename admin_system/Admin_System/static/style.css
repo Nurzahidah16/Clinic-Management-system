@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    /* Updated to warm beige and light brown gradients */
+    background: linear-gradient(135deg, #f5ebe0, #e3d5ca, #d5bdaf);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* LOGIN CONTAINER */
+.login-container {
+    width: 400px;
+    padding: 40px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    margin: auto;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    /* Deep dark brown */
+    color: #4a3728;
+    font-size: 32px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    /* Rich medium brown */
+    color: #7f5539;
+    font-weight: 600;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    background: rgba(255,255,255,0.6);
+    font-size: 15px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    /* Rich medium brown */
+    background: #7f5539;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    /* Deep dark brown */
+    background: #4a3728;
+    transform: translateY(-2px);
+}
+
+/* DASHBOARD CONTAINER */
+.dashboard-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+.dashboard-title {
+    color: #4a3728;
+    margin-bottom: 10px;
+}
+
+/* CARDS */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.3);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.45);
+}
+
+.dashboard-card h3 {
+    color: #7f5539;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.dashboard-card p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4a3728;
+}
+
+/* TABLES */
+.appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+}
+
+.appointment-table th {
+    /* Rich medium brown */
+    background: #7f5539;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+
+.appointment-table td {
+    padding: 18px;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+}
+
+.appointment-table tr:hover td {
+    background: rgba(255,255,255,0.5);
+}
+
+/* BUTTONS */
+.add-btn {
+    padding: 12px 20px;
+    background: #7f5539;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #4a3728;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    padding: 10px 15px;
+    background: #d00000;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.delete-btn:hover {
+    background: #9d0208;
+    transform: scale(1.05);
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: #d00000;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #9d0208;
+}
+
+/* TOAST MESSAGES */
+.toast-message {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    animation: fadeSlide 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    color: white;
+}
+
+/* Kept Semantic Success (Green) and Error (Red) for alerts */
+.toast-message.success { background: rgba(127, 85, 57, 0.95); }
+.toast-message.error { background: rgba(220, 38, 38, 0.95); }
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}

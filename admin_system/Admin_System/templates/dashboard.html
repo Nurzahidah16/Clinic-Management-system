@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="toast-message {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="dashboard-container">
+
+        <div class="top-bar">
+            <div>
+                <h1 class="dashboard-title"><i class="fa-solid fa-shield-halved"></i> Admin Control Center</h1>
+                <p style="color: #1b4332; font-weight: 600;">Welcome, {{ session['admin'] }}</p>
+            </div>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+
+        <div class="card-grid">
+            <div class="dashboard-card">
+                <h3><i class="fa-solid fa-users"></i> Total Active Users</h3>
+                <p>{{ user_count }}</p>
+            </div>
+            <div class="dashboard-card">
+                <h3><i class="fa-solid fa-lock"></i> Encryption</h3>
+                <p style="font-size: 20px; margin-top: 10px;">AES-256 Enabled</p>
+            </div>
+        </div>
+
+        <hr style="border: 1px solid rgba(255,255,255,0.2); margin-bottom: 25px;">
+
+        <h2 style="color: #4a3728; margin-bottom: 15px;"><i class="fa-solid fa-user-plus"></i> Create New User</h2>
+        <form action="/add_user" method="POST" style="display: flex; gap: 15px; align-items: center; margin-bottom: 30px;">
+            <input type="text" name="username" placeholder="New Username" required style="padding: 12px; border-radius: 12px; border: none; background: rgba(255,255,255,0.6); outline: none;">
+            <select name="role" required style="padding: 12px; border-radius: 12px; border: none; background: rgba(255,255,255,0.6); outline: none;">
+                <option value="Doctor">Doctor</option>
+                <option value="Patient">Patient</option>
+            </select>
+            <button type="submit" class="add-btn">Create User</button>
+        </form>
+
+        <h2 style="color: #4a3728; margin-bottom: 15px;"><i class="fa-solid fa-address-book"></i> Current Users (SQL View)</h2>
+        <table class="appointment-table">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.UserID }}</td>
+                <td>{{ user.Username }}</td>
+                <td><span style="background: #e3d5ca; color: #4a3728; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #1b4332;">{{ user.Role }}</span></td>
+                <td>
+                    <a href="/delete_user/{{ user.UserID }}" class="delete-btn" onclick="return confirm('Execute securely signed SP to delete this user?')">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2 style="color: #4a3728; margin-bottom: 15px;"><i class="fa-solid fa-file-shield"></i> System Audit Logs</h2>
+        <table class="appointment-table">
+            <tr>
+                <th>Timestamp</th>
+                <th>Admin User</th>
+                <th>Action Recorded</th>
+            </tr>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.LogTime }}</td>
+                <td style="font-weight: bold;">{{ log.ActionUser }}</td>
+                <td>{{ log.ActionPerformed }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+            const toast = document.querySelector('.toast-message');
+            if (toast) toast.style.display = 'none';
+        }, 3000);
+    </script>
+</body>
+</html>
