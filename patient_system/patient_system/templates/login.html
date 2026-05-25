@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="login-container">
+    <h2>Welcome Back</h2>
+    
+    {% with messages = get_flashed_messages(category_filter=["login_error"]) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="inline-error-box">
+                    ⚠️ {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST">
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email..." required>
+        </div>
+        
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" class="login-btn">Sign In</button>
+    </form>
+    
+    <div class="form-footer">
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+    </div>
+</div>
+
+{% endblock %}

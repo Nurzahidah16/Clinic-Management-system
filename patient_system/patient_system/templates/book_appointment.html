@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard-container form-panel-layout">
+    <div class="top-bar">
+        <div class="header-group">
+            <h1 class="dashboard-title">Book Appointment</h1>
+            <p class="subtitle-text">Select your preferred date and time for your visit.</p>
+        </div>
+    </div>
+
+    <form method="POST">
+        <div class="input-group">
+            <label for="appointment_date">Preferred Date</label>
+            <input type="date" id="appointment_date" name="appointment_date" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="appointment_time">Preferred Time</label>
+            <input type="time" id="appointment_time" name="appointment_time" required>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="login-btn">Save Appointment</button>
+            <a href="{{ url_for('dashboard') }}" class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

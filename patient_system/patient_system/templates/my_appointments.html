@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard-container">
+    <div class="top-bar">
+        <div>
+            <h1 class="dashboard-title">My Appointments</h1>
+            <p style="color: #705335; font-size: 14px; margin-top: 4px;">
+                Review your historical and upcoming scheduled clinical sessions.
+            </p>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="add-btn" style="background: #705335;">← Back to Dashboard</a>
+    </div>
+
+    {% if appointments and appointments|length > 0 %}
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reason</th>
+                <th style="width: 140px;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in appointments %}
+            <tr>
+                <td><strong>{{ a.id }}</strong></td>
+                <td>{{ a.appointment_date }}</td>
+                <td>{{ a.appointment_time }}</td>
+                <td>{{ a.reason }}</td>
+                <td>
+                    {% if a.status|lower == 'confirmed' or a.status|lower == 'approved' %}
+                        <span class="status-badge" style="background: #d8f3dc; color: #1b4332;">{{ a.status }}</span>
+                    {% elif a.status|lower == 'pending' %}
+                        <span class="status-badge" style="background: #f3ede4; color: #705335;">{{ a.status }}</span>
+                    {% else %}
+                        <span class="status-badge" style="background: #ffe3e3; color: #cc0000;">{{ a.status }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% else %}
+    <div class="empty-state">
+        <span style="font-size: 40px; display: block; margin-bottom: 15px;">🗓️</span>
+        <h3 style="color: #4a3321; margin-bottom: 8px;">No Appointments Booked Yet</h3>
+        <p style="color: #8a735d; font-size: 14px; margin-bottom: 20px;">When you schedule clinical sessions, they will organize themselves right here.</p>
+        <a href="{{ url_for('book_appointment') }}" class="add-btn">+ Book Your First Appointment</a>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

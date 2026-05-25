@@ -1,0 +1,466 @@
+/* ==========================================
+   1. FONTS, RESET & BASE CANVAS
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #efe6dd, #e5dad0);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Master wrapper layout helper */
+.main-canvas {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================
+   2. CONTAINERS & APP PANELS
+   ========================================== */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+    border-radius: 24px;
+    background: #fdfbf7;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 24px;
+    background: #fdfbf7;
+    box-shadow: 0 12px 40px rgba(74, 51, 33, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    margin: auto;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 15px;
+}
+
+/* Form panel wrapper helper */
+.form-panel-layout {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   3. TYPOGRAPHY
+   ========================================== */
+.dashboard-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #4a3321; 
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-container h2, 
+.login-container h2,
+h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.login-container h2 {
+    color: #4a3321;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle-text {
+    color: #705335; 
+    font-size: 14px; 
+    margin-top: 4px;
+}
+
+/* ==========================================
+   4. CARD GRIDS & STATS
+   ========================================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 35px;
+}
+
+.dashboard-card {
+    padding: 26px;
+    border-radius: 18px;
+    background: #f3ede4;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(74, 51, 33, 0.05);
+}
+
+.dashboard-card h3 {
+    color: #705335;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    margin-bottom: 8px;
+}
+
+.dashboard-card .stat-number {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #4a3321;
+    margin-top: 5px;
+}
+
+/* ==========================================
+   5. INTERACTIVE INPUTS, TEXTAREAS & FIELDS
+   ========================================== */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a3321;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+.input-group input,
+select {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2d2d2d;
+    padding: 12px 16px;
+    border: 1px solid #dcd1c4;
+    border-radius: 10px;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #825838;
+    box-shadow: 0 0 0 3px rgba(130, 88, 56, 0.15);
+}
+
+input::placeholder, textarea::placeholder {
+    color: #a6998a;
+    font-size: 13px;
+}
+
+textarea {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2d2d2d;
+    padding: 14px 16px;
+    border: 1px solid #dcd1c4;
+    border-radius: 12px;
+    background: #ffffff;
+    outline: none;
+    line-height: 1.5;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea:focus {
+    border-color: #825838;
+    box-shadow: 0 0 0 3px rgba(130, 88, 56, 0.15);
+}
+
+/* ==========================================
+   6. DATA TABLES & STRUCTURAL VIEWS
+   ========================================== */
+.appointment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.appointment-table th {
+    font-family: 'Inter', sans-serif;
+    background: #825838;
+    color: #ffffff;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    text-align: left;
+}
+
+.appointment-table td {
+    font-family: 'Inter', sans-serif;
+    padding: 16px;
+    color: #3e3e3e;
+    font-size: 14px;
+    font-weight: 400;
+    background: #f9f6f0;
+    border-bottom: 1px solid #efeae2;
+}
+
+.appointment-table tr:hover td {
+    background: #f3ede4;
+}
+
+.appointment-table td strong,
+.appointment-table td.bold-text {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.status-badge {
+    font-family: 'Inter', sans-serif;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #e2ded5;
+    color: #4a3321;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f9f6f0;
+    border-radius: 16px;
+    border: 2px dashed #dcd1c4;
+}
+
+/* ==========================================
+   7. BUTTON SYSTEM & FOOTERS
+   ========================================== */
+.add-btn, 
+.login-btn,
+.dropbtn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    padding: 12px 20px;
+    background: #825838;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.add-btn:hover, 
+.login-btn:hover,
+.dropbtn:hover {
+    background: #6b472e;
+}
+
+.logout-btn, 
+.delete-btn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 18px;
+    background: #cc0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover, 
+.delete-btn:hover {
+    background: #b30000;
+}
+
+.form-actions {
+    display: flex; 
+    gap: 12px; 
+    margin-top: 30px;
+}
+
+.form-actions .login-btn {
+    flex: 2;
+    margin: 0;
+}
+
+.form-actions .cancel-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e2ded5;
+    color: #4a3321;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.form-actions .cancel-btn:hover {
+    background: #d4cebf;
+}
+
+.form-footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.form-footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #705335;
+}
+
+.form-footer a {
+    color: #825838;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+    color: #cc0000;
+    text-decoration: underline;
+}
+
+/* ==========================================
+   8. NOTIFICATIONS & INLINE ERROR BOXES
+   ========================================== */
+.flash-container {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.flash-message {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(74, 51, 33, 0.08);
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flash-message.error,
+.flash-message.danger {
+    background: #cc0000;
+    color: #ffffff;
+}
+
+.flash-message.success {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.inline-error-box {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #cc0000;
+    background: #ffe3e3;
+    border: 1px solid rgba(204, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* ==========================================
+   9. MOBILE RESPONSIVENESS OVERRIDES
+   ========================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    .dashboard-container, 
+    .login-container {
+        padding: 24px 16px;
+    }
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .top-bar .add-btn,
+    .top-bar .logout-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    .form-actions .cancel-btn {
+        padding: 12px;
+    }
+    .appointment-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
